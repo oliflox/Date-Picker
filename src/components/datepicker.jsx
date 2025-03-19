@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const DatePicker = ({ Label, id }) => {
+const DatePicker = ({ Label, id, onChange }) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [showCalendar, setShowCalendar] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -9,6 +9,9 @@ const DatePicker = ({ Label, id }) => {
   const handleDateClick = (date) => {
     setSelectedDate(date);
     setShowCalendar(false);
+    if (onChange) {
+      onChange(date);
+    }
   };
 
   const handlePrevMonth = () => {
@@ -121,8 +124,13 @@ const DatePicker = ({ Label, id }) => {
   return (
     <div className="calendar">
       <div className="calendarInputContainer">
-        {Label && <label className="calendarLabel" id={id}>{Label}</label>}
+        {Label && (
+          <label className="calendarLabel" >
+            {Label}
+          </label>
+        )}
         <input
+        id={id}
           className="calendarInput"
           type="text"
           value={selectedDate ? selectedDate.toLocaleDateString() : ""}
