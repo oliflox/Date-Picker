@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const DatePicker = ({ Name }) => {
+const Calendar = ({ Name }) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [showCalendar, setShowCalendar] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -146,4 +146,4 @@ const DatePicker = ({ Name }) => {
   );
 };
 
-export default DatePicker;
+export default Calendar;
