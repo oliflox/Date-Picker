@@ -1,17 +1,17 @@
 {
-  "name": "@oliflox/calendar",
+  "name": "@oliflox/date-picker",
   "version": "1.0.5",
-  "description": "Calendar by oliflox",
+  "description": "Date picker by oliflox",
   "keywords": [
-    "Calendar"
+    "date-picker"
   ],
   "license": "ISC",
   "author": "oliflox",
   "type": "module",
-  "main": "src/components/Calendar.jsx",
+  "main": "src/components/datepicker.jsx",
   "files": [
-    "src/components/Calendar.jsx",
-    "Calendar.css"
+    "src/components/datepicker.jsx",
+    "datepicker.css"
   ],
   "scripts": {
     "dev": "vite",
@@ -41,5 +41,5 @@
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
   },
-  "module": "src/components/Calendar.jsx"
+  "module": "src/components/datepicker.jsx"
 }

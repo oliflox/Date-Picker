@@ -1,13 +1,13 @@
 import { useState } from 'react'
-import './calendar.css'
-import Calendar from './components/Calendar'
+import DatePicker from './components/datepicker'
+import './datepicker.css'
 
 function App() {
 
 
   return (
     <>
-      <Calendar Name={"Yolo"}/>
+      <DatePicker Name={"Yolo"}/>
     </>
   )
 }
