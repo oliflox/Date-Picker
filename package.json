@@ -10,7 +10,8 @@
   "type": "module",
   "main": "src/components/datepicker.jsx",
   "files": [
-    "src/components/datepicker.jsx"
+    "src/components/datepicker.jsx",
+    "App.css"
   ],
   "scripts": {
     "dev": "vite",
