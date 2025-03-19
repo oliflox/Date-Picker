@@ -28,7 +28,28 @@
 }
 
 .calendarHeader {
+  padding-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendarWeekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
   padding-bottom: 8px;
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.calendarDay {
+  border: none;
+  background-color: transparent;
+  padding: 6px;
 }
 
 .calendarButton {
@@ -38,13 +59,8 @@
   padding: 8px;
   border-radius: 4px;
   cursor: pointer;
-  margin: 0 10px;
 }
 
 .calendarButton:hover {
   background-color: #05668D;
-}
-
-.calendarContainer td:hover {
-  cursor: pointer;
 }

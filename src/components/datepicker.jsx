@@ -57,67 +57,62 @@ const DatePicker = ({ Label, id, onChange }) => {
     const startDay = startOfMonth.getDay();
     const daysInMonth = endOfMonth.getDate();
 
-    const weeks = [];
-    let days = [];
+    const days = [];
 
     for (let i = 0; i < startDay; i++) {
-      days.push(<td key={`empty-${i}`}></td>);
+      days.push(<div key={`empty-${i}`} className="calendarDay empty"></div>);
     }
 
     for (let i = 1; i <= daysInMonth; i++) {
-      if (days.length === 7) {
-        weeks.push(<tr key={`week-${weeks.length}`}>{days}</tr>);
-        days = [];
-      }
       const date = new Date(
         currentMonth.getFullYear(),
         currentMonth.getMonth(),
         i
       );
       days.push(
-        <td key={i} onClick={() => handleDateClick(date)}>
+        <button
+          key={i}
+          className="calendarDay"
+          onClick={() => handleDateClick(date)}
+        >
           {i}
-        </td>
+        </button>
       );
     }
 
-    if (days.length > 0) {
-      weeks.push(<tr key={`week-${weeks.length}`}>{days}</tr>);
-    }
-
     return (
-      <table>
-        <thead>
-          <tr>
-            <th className="calendarHeader" colSpan="7">
-              <button
-                className="calendarButton prev-button"
-                onClick={handlePrevMonth}
-              >
-                {"<"}
-              </button>
-              {currentMonth.toLocaleString("default", { month: "long" })}{" "}
-              {currentMonth.getFullYear()}
-              <button
-                className="calendarButton next-button"
-                onClick={handleNextMonth}
-              >
-                {">"}
-              </button>
-            </th>
-          </tr>
-          <tr>
-            <th>Dim</th>
-            <th>Lun</th>
-            <th>Mar</th>
-            <th>Mer</th>
-            <th>Jeu</th>
-            <th>Ven</th>
-            <th>Sam</th>
-          </tr>
-        </thead>
-        <tbody>{weeks}</tbody>
-      </table>
+      <div className="calendarWrapper">
+        <div className="calendarHeader">
+          <button
+            className="calendarButton prev-button"
+            onClick={handlePrevMonth}
+          >
+            {"<"}
+          </button>
+          <span>
+            {currentMonth.toLocaleString("default", { month: "long" })}{" "}
+            {currentMonth.getFullYear()}
+          </span>
+          <button
+            className="calendarButton next-button"
+            onClick={handleNextMonth}
+          >
+            {">"}
+          </button>
+        </div>
+        <div className="calendarDays">
+          <div className="calendarWeekdays">
+            <div>Dim</div>
+            <div>Lun</div>
+            <div>Mar</div>
+            <div>Mer</div>
+            <div>Jeu</div>
+            <div>Ven</div>
+            <div>Sam</div>
+          </div>
+          <div className="calendarGrid">{days}</div>
+        </div>
+      </div>
     );
   };
 
