@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import DatePicker from './components/datepicker'
-import './App.css'
+import './datepicker.css'
 
 function App() {
 

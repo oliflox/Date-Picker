@@ -4,14 +4,19 @@
   font-family: 'Roboto', sans-serif;
 }
 
-#root {
+.calendarInputContainer{
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.calendar-container {
+.calendarInput:active, .calendarInput:focus {
+  outline: none;
+}
+
+
+.calendarContainer {
   position: absolute;
   left: 50%;
   transform: translate(-50%, 10px);
@@ -20,21 +25,19 @@
   padding: 16px;
 }
 
-.calendar-button {
+.calendarHeader{
+  padding-bottom: 8px;
+}
+
+.calendarButton {
   background-color: #f0f0f0;
   border: none;
   padding: 8px;
   border-radius: 4px;
   cursor: pointer;
-
+  margin: 0 10px;
 }
 
-.calendar-container td:hover {
+.calendarContainer td:hover {
 cursor: pointer;}
 
-.date-picker{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  gap: 8px;
-}

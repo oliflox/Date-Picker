@@ -86,11 +86,21 @@ const DatePicker = ({ Name }) => {
       <table>
         <thead>
           <tr>
-            <th className="calendar-header" colSpan="7">
-              <button className="calendar-button prev-button" onClick={handlePrevMonth}>{"<"}</button>
+            <th className="calendarHeader" colSpan="7">
+              <button
+                className="calendarButton prev-button"
+                onClick={handlePrevMonth}
+              >
+                {"<"}
+              </button>
               {currentMonth.toLocaleString("default", { month: "long" })}{" "}
               {currentMonth.getFullYear()}
-              <button className="calendar-button next-button" onClick={handleNextMonth}>{">"}</button>
+              <button
+                className="calendarButton next-button"
+                onClick={handleNextMonth}
+              >
+                {">"}
+              </button>
             </th>
           </tr>
           <tr>
@@ -109,21 +119,27 @@ const DatePicker = ({ Name }) => {
   };
 
   return (
-    <div className="date-picker">
-      {Name && <label className="date-picker-label">{Name}</label>}
-      <input
-        type="text"
-        value={selectedDate ? selectedDate.toLocaleDateString() : ""}
-        onFocus={() => setShowCalendar(true)}
-        readOnly
-      />
+    <div className="calendar">
+      <div className="calendarInputContainer">
+        {Name && <label className="calendarLabel">{Name}</label>}
+        <input
+          className="calendarInput"
+          type="text"
+          value={selectedDate ? selectedDate.toLocaleDateString() : ""}
+          onFocus={() => setShowCalendar(true)}
+          readOnly
+        />
+      </div>
+
       {showCalendar && (
         <>
           <div
-            className="modal-overlay"
+            className="modalOverlay"
             onClick={() => setShowCalendar(false)}
           ></div>
-          <div className="calendar-container" ref={calendarRef}>{renderCalendar()}</div>
+          <div className="calendarContainer" ref={calendarRef}>
+            {renderCalendar()}
+          </div>
         </>
       )}
     </div>
