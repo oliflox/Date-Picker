@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const DatePicker = ({ Name }) => {
+const DatePicker = ({ Label, id }) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [showCalendar, setShowCalendar] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -121,7 +121,7 @@ const DatePicker = ({ Name }) => {
   return (
     <div className="calendar">
       <div className="calendarInputContainer">
-        {Name && <label className="calendarLabel" id={Name}>{Name}</label>}
+        {Label && <label className="calendarLabel" id={id}>{Label}</label>}
         <input
           className="calendarInput"
           type="text"

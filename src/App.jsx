@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <DatePicker Name={"Yolo"}/>
+      <DatePicker Label={"Yolo"} id={"Bonsoir"}/>
     </>
   )
 }
