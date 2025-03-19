@@ -11,7 +11,7 @@
   "main": "src/components/datepicker.jsx",
   "files": [
     "src/components/datepicker.jsx",
-    "App.css"
+    "datepicker.css"
   ],
   "scripts": {
     "dev": "vite",
