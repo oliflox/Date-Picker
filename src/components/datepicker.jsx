@@ -121,7 +121,7 @@ const DatePicker = ({ Name }) => {
   return (
     <div className="calendar">
       <div className="calendarInputContainer">
-        {Name && <label className="calendarLabel">{Name}</label>}
+        {Name && <label className="calendarLabel" id={Name}>{Name}</label>}
         <input
           className="calendarInput"
           type="text"
