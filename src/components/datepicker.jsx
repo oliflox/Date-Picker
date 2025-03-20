@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import CalendarHeader from "./CalendarHeader";
 import CalendarDays from "./CalendarDays";
 
@@ -8,52 +8,47 @@ const DatePicker = ({ Label, id, onChange }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const calendarRef = useRef(null);
 
-  const handleDateClick = (date) => {
-    setSelectedDate(date);
-    setShowCalendar(false);
-    if (onChange) {
-      onChange(date);
-    }
-  };
+  const updateMonthOrYear = useCallback((type, value) => {
+    setCurrentMonth((prev) => {
+      const year = type === "year" ? value : prev.getFullYear();
+      const month = type === "month" ? value : prev.getMonth();
+      return new Date(year, month, 1);
+    });
+  }, []);
 
-  const handlePrevMonth = () => {
-    setCurrentMonth(
-      new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1)
-    );
-  };
-
-  const handleNextMonth = () => {
-    setCurrentMonth(
-      new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1)
-    );
-  };
-
-  const handleMonthChange = (event) => {
-    const selectedMonth = parseInt(event.target.value, 10);
-    setCurrentMonth(new Date(currentMonth.getFullYear(), selectedMonth, 1));
-  };
-
-  const handleYearChange = (event) => {
-    const selectedYear = parseInt(event.target.value, 10);
-    setCurrentMonth(new Date(selectedYear, currentMonth.getMonth(), 1));
-  };
-
-  const handleClickOutside = (event) => {
-    if (calendarRef.current && !calendarRef.current.contains(event.target)) {
+  const handleDateClick = useCallback(
+    (date) => {
+      setSelectedDate(date);
       setShowCalendar(false);
-    }
-  };
+      onChange?.(date);
+    },
+    [onChange]
+  );
+
+  const handlePrevMonth = () =>
+    updateMonthOrYear("month", currentMonth.getMonth() - 1);
+  const handleNextMonth = () =>
+    updateMonthOrYear("month", currentMonth.getMonth() + 1);
+  const handleMonthChange = (event) =>
+    updateMonthOrYear("month", parseInt(event.target.value, 10));
+  const handleYearChange = (event) =>
+    updateMonthOrYear("year", parseInt(event.target.value, 10));
+
+  const handleClickOutside = useCallback(
+    (event) => {
+      if (calendarRef.current && !calendarRef.current.contains(event.target)) {
+        setShowCalendar(false);
+      }
+    },
+    []
+  );
 
   useEffect(() => {
     if (showCalendar) {
       document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
     }
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [showCalendar]);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [showCalendar, handleClickOutside]);
 
   return (
     <div className="calendar">

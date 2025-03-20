@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 const CalendarHeader = ({
   currentMonth,
@@ -7,6 +7,29 @@ const CalendarHeader = ({
   handleMonthChange,
   handleYearChange,
 }) => {
+  const monthOptions = useMemo(
+    () =>
+      Array.from({ length: 12 }, (_, index) => (
+        <option key={index} value={index}>
+          {new Date(0, index).toLocaleString("default", { month: "long" })}
+        </option>
+      )),
+    []
+  );
+
+  const yearOptions = useMemo(
+    () =>
+      Array.from({ length: 150 }, (_, index) => {
+        const year = 1900 + index;
+        return (
+          <option key={year} value={year}>
+            {year}
+          </option>
+        );
+      }),
+    []
+  );
+
   return (
     <div className="calendarHeader">
       <button className="calendarButton prev-button" onClick={handlePrevMonth}>
@@ -17,25 +40,14 @@ const CalendarHeader = ({
         value={currentMonth.getMonth()}
         onChange={handleMonthChange}
       >
-        {Array.from({ length: 12 }, (_, index) => (
-          <option key={index} value={index}>
-            {new Date(0, index).toLocaleString("default", { month: "long" })}
-          </option>
-        ))}
+        {monthOptions}
       </select>
       <select
         className="yearDropdown"
         value={currentMonth.getFullYear()}
         onChange={handleYearChange}
       >
-        {Array.from({ length: 150 }, (_, index) => {
-          const year = 1900 + index;
-          return (
-            <option key={year} value={year}>
-              {year}
-            </option>
-          );
-        })}
+        {yearOptions}
       </select>
       <button className="calendarButton next-button" onClick={handleNextMonth}>
         {">"}
